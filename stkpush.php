@@ -42,7 +42,13 @@ $data_string = json_encode($curl_post_data);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
 curl_setopt($curl, CURLOPT_POST, TRUE);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
-$curl_response = curl_exec($curl);
+echo $curl_response = curl_exec($curl);
 
-echo $curl_response;
+//echo response
+$data = json_decode($curl_response);
+$CheckoutRequestID = $data->CheckoutRequestID;
+$ResponseCode = $data->ResponseCode;
+if ($ResponseCode == "0") {
+    echo "The ChechoutResponseId for this transaction is : ". $CheckoutRequestID;
+}
 
